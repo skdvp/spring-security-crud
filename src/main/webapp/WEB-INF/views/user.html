@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<title>Show Simple User</title>
+<head>
+    <meta charset="UTF-8">
+    <title>Hello user</title>
+</head>
+<body>
+<p>Hello User or ADMIN!</p>
+<p>This is your data!</p>
+<br>
+
+
+<label>Your First Name: </label>
+<p th:text="${key.getName()}">VALUE</p>
+<br>
+<label>Your Last Name: </label>
+<p th:text="${key.getSurname()}">VALUE</p>
+<br>
+<label>Your Age: </label>
+<p th:text="${key.getAge()}">VALUE</p>
+
+<br><br>
+<a th:href="@{/logout}">Logout</a>
+
+
+
+</body>
+</html>
