@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -7,20 +6,41 @@
 </head>
 <body>
 
-<form th:method="POST" th:action="@{/WEB-INF/views/user_list}" th:object="${key}">
+<div>
+    <h2>Add User</h2>
+    <br>
 
-    <label for="name">Enter name: </label>
-    <input type="text" th:field="*{name}" id="name"/>
+    <form th:method="POST" th:action="@{/admin/saveUser}" th:object="${user}">
 
-    <label for="name">Enter surname: </label>
-    <input type="text" th:field="*{surname}" id="surname"/>
+        <input type="hidden" th:field="*{id}"/>
 
-    <label for="name">Enter age: </label>
-    <input type="text" th:field="*{age}" id="age"/>
+        Name <input type="text" th:field="*{name}"/>
+        <br><br>
+        Surname <input type="text" th:field="*{surname}"/>
+        <br><br>
+        Age <input type="text" th:field="*{age}"/>
+        <br><br>
+        Username <input type="text" th:field="*{username}"/>
+        <br><br>
+        Password <input type="text" th:field="*{password}"/>
+        <br><br>
 
-    <br/>
-    <input type="submit" value="Create!"/>
-</form>
+                <label>
+                    <select multiple size="2" name="rolesNames" th:required="true">
+                        <option value=""> - Select role - </option>
+                        <option
+                                th:each="iterate_role : ${rollNames}"
+                                th:value="${iterate_role.name}"
+                                th:text="${iterate_role.name}"
+                                th:selected="${#lists.contains(user.roles, iterate_role)}">
+                        </option>
+                    </select>
+                </label>
 
+        <button type="submit" class="btn btn-success">Ok</button>
+
+    </form>
+
+</div>
 </body>
 </html>

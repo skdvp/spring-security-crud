@@ -12,13 +12,13 @@ public interface UserDao {
 
     List<User> showAllUsers();
 
-    User showUser(long id);
+    User showUser(Long id);
 
 
     void saveUser(User user);
 
-    void updateUser(long id, User updateUser);
+    void updateUser(Long id, User updateUser);
 
-    void removeUserById(long id);
+    void removeUserById(Long id);
 
 }

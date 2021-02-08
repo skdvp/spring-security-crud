@@ -1,9 +1,8 @@
 package ru.skdvp.app.dao;
 
-import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.skdvp.app.model.User;
-import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,11 +11,11 @@ import java.util.List;
 
 @Repository
 @Transactional(readOnly = true)
-@Primary
-public class UserDaoHibernateImpl implements UserDao {
+public class UserDaoImpl implements UserDao {
 
     @PersistenceContext
     private EntityManager entityManager;
+
 
     /*==========================SECURITY METHOD=================================*/
 
@@ -31,6 +30,8 @@ public class UserDaoHibernateImpl implements UserDao {
 
     }
 
+
+
     /*==========================CRUD METHODS=================================*/
 
     @Override
@@ -43,7 +44,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
 
     @Override
-    public User showUser(long id) {
+    public User showUser(Long id) {
         TypedQuery<User> typedQuery = entityManager.createQuery(
                 "select u from User u where u.id = :id", User.class);
 
@@ -55,13 +56,14 @@ public class UserDaoHibernateImpl implements UserDao {
     @Transactional
     @Override
     public void saveUser(User user) {
-        entityManager.persist(user);
+
+        entityManager.merge(user);
     }
 
 
     @Transactional
     @Override
-    public void updateUser(long id, User updateUser) {
+    public void updateUser(Long id, User updateUser) {
 
         TypedQuery<User> userShowQuery = entityManager.createQuery(
                 "select u from User u where u.id = :id", User.class);
@@ -77,7 +79,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Transactional
     @Override
-    public void removeUserById(long id) {
+    public void removeUserById(Long id) {
         TypedQuery<User> userDeleteQuery = entityManager
                 .createQuery("select u from User u where u.id = :id", User.class);
         userDeleteQuery.setParameter("id", id).getSingleResult();

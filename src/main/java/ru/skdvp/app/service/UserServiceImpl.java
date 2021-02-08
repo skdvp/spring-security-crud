@@ -1,22 +1,30 @@
 package ru.skdvp.app.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.skdvp.app.dao.UserDao;
+import ru.skdvp.app.model.Role;
 import ru.skdvp.app.model.User;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     private final UserDao userDao;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final RoleService roleService;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao) {
+    public UserServiceImpl(UserDao userDao, BCryptPasswordEncoder bCryptPasswordEncoder, RoleService roleService) {
         this.userDao = userDao;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.roleService = roleService;
     }
-
 
     @Override
     public User getUserByName(String name) {
@@ -25,29 +33,41 @@ public class UserServiceImpl implements UserService {
 
     /*==========================CRUD=================================*/
 
+    @Transactional
     @Override
     public List<User> showAllUsers() {
         return userDao.showAllUsers();
     }
 
+    @Transactional
     @Override
-    public User showUser(long id) {
+    public User showUser(Long id) {
         return userDao.showUser(id);
     }
 
-
+    @Transactional
     @Override
-    public void saveUser(User user) {
+    public void saveUser(User user, String[] roles) {
+
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+
+        Set<Role> roleSet = new HashSet<>();
+        for (String roleName : roles) {
+            roleSet.add(roleService.getByRoleName(roleName));
+        }
+        user.setRoles(roleSet);
         userDao.saveUser(user);
     }
 
+    @Transactional
     @Override
-    public void updateUser(long id, User updateUser) {
+    public void updateUser(Long id, User updateUser) {
         userDao.updateUser(id, updateUser);
     }
 
+    @Transactional
     @Override
-    public void removeUserById(long id) {
+    public void removeUserById(Long id) {
         userDao.removeUserById(id);
     }
 }
