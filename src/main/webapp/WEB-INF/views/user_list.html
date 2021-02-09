@@ -6,12 +6,18 @@
 </head>
 <body>
 
+<h3>Surnames Users</h3>
 <form>
     <div th:each="user : ${key}">
 
         <a th:href="@{/user_list/{id}(id=${user.getId()})}" th:text="${user.getSurname()}">surname</a>
 
     </div>
+    <br/>
+    <hr/>
+    <h3>Available Roles</h3>
+
+    <div th:each="string_role : ${string_role_array}" th:text="${string_role}"></div>
 </form>
 
 <br/>

@@ -38,7 +38,7 @@ public class UserController {
     public String showAllUsers(Model model) {
         // GET /user_list всех людей из DAO и передаём на отображение в представление
         model.addAttribute("key", userService.showAllUsers());
-
+        model.addAttribute("string_role_array", roleService.getAllRolesNamesStringArray());
         return "user_list";
     }
 
@@ -54,15 +54,14 @@ public class UserController {
         // GET /user_list/new запрос HTML формы для создания записи
 
         model.addAttribute("user", new User());
-        model.addAttribute("rollNames", roleService.getAllRoles());
-
+        model.addAttribute("roles_list", roleService.getAllRoles());
         return "new_user";
     }
 
     @PostMapping("/admin/saveUser")
-    public String saveUser(@ModelAttribute("user") User user, @RequestParam(value = "rolesNames") String[] roles) {
+    public String saveUser(@ModelAttribute("user") User user, @RequestParam(value = "rolesIdSelect") Long idRole) {
         // POST /user_list создаём новую запись
-        userService.saveUser(user, roles);
+        userService.saveUser(user, idRole);
         return "redirect:/admin";
     }
 

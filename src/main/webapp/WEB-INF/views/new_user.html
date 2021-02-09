@@ -25,22 +25,22 @@
         Password <input type="text" th:field="*{password}"/>
         <br><br>
 
-                <label>
-                    <select multiple size="2" name="rolesNames" th:required="true">
-                        <option value=""> - Select role - </option>
-                        <option
-                                th:each="iterate_role : ${rollNames}"
-                                th:value="${iterate_role.name}"
-                                th:text="${iterate_role.name}"
-                                th:selected="${#lists.contains(user.roles, iterate_role)}">
-                        </option>
-                    </select>
-                </label>
+
+        <label>
+            <select th:multiple th:size="2" th:name="rolesIdSelect" th:required="true">
+                <option value=""> - Select role -</option>
+                <option
+                        th:each="role : ${roles_list}"
+                        th:value="${role.id}"
+                        th:text="${role.name}"
+                        th:selected="${#lists.contains(roles_list, role)}">
+                </option>
+            </select>
+        </label>
 
         <button type="submit" class="btn btn-success">Ok</button>
 
     </form>
-
 </div>
 </body>
 </html>

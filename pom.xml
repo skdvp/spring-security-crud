@@ -31,11 +31,6 @@
     </dependency>
 
 
-
-
-
-
-
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
@@ -53,23 +48,6 @@
       <artifactId>spring-security-config</artifactId>
       <version>${spring.version}</version>
     </dependency>
-
-
-
-
-    <!-- https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5 -->
-    <dependency>
-      <groupId>org.thymeleaf.extras</groupId>
-      <artifactId>thymeleaf-extras-springsecurity5</artifactId>
-      <version>3.0.4.RELEASE</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.thymeleaf</groupId>
-      <artifactId>thymeleaf-spring5</artifactId>
-      <version>3.0.11.RELEASE</version>
-    </dependency>
-
 
 
 
@@ -107,17 +85,6 @@
       <version>5.3.2</version>
     </dependency>
 
-
-
-
-
-
-<!--    <dependency>-->
-<!--      <groupId>org.thymeleaf</groupId>-->
-<!--      <artifactId>thymeleaf-spring5</artifactId>-->
-<!--      <version>3.0.9.RELEASE</version>-->
-<!--    </dependency>-->
-
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
@@ -130,9 +97,6 @@
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.22</version>
     </dependency>
-
-
-
 
     <dependency>
       <groupId>org.hibernate</groupId>
@@ -152,7 +116,6 @@
       <version>5.1.2.Final</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-entitymanager</artifactId>
@@ -168,21 +131,31 @@
 
 
 
-    <!--    <dependency>-->
-<!--      <groupId>org.projectlombok</groupId>-->
-<!--      <artifactId>lombok</artifactId>-->
-<!--      <version>RELEASE</version>-->
-<!--      <scope>compile</scope>-->
-<!--    </dependency>-->
 
+    <dependency>
+      <groupId>org.thymeleaf.extras</groupId>
+      <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+      <version>3.0.4.RELEASE</version>
+    </dependency>
 
-    <!-- https://mvnrepository.com/artifact/com.mchange/c3p0 -->
+    <dependency>
+      <groupId>org.thymeleaf</groupId>
+      <artifactId>thymeleaf-spring5</artifactId>
+      <version>3.0.11.RELEASE</version>
+    </dependency>
+
     <dependency>
       <groupId>com.mchange</groupId>
       <artifactId>c3p0</artifactId>
       <version>0.9.5.2</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>RELEASE</version>
+      <scope>compile</scope>
+    </dependency>
 
 
   </dependencies>

@@ -47,16 +47,15 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public void saveUser(User user, String[] roles) {
+    public User saveUser(User user, Long idRole) {
 
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
         Set<Role> roleSet = new HashSet<>();
-        for (String roleName : roles) {
-            roleSet.add(roleService.getByRoleName(roleName));
-        }
+            roleSet.add(roleService.getRoleById(idRole));
         user.setRoles(roleSet);
         userDao.saveUser(user);
+        return user;
     }
 
     @Transactional

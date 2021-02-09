@@ -14,7 +14,7 @@ public interface UserService {
 
     User showUser(Long id);
 
-    void saveUser(User user, String[] role);
+    User saveUser(User user, Long idRole);
 
     void updateUser(Long id, User updateUser);
 
